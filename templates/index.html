@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crack Detection</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#upload-form {
+    justify-content: space-between;
+}
+
+#image-preview {
+    max-width: 500px;
+    margin: 20px auto;
+    display: none;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #555;
+}
+
+label {
+    margin-top: 10px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    color: #555;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+label:hover {
+    background-color: #ddd;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Crack Detection</h1>
+        <div id="upload-form">
+            <label for="imageInput" class="custom-file-upload">
+            <input type="file" id="imageInput" accept="image/*"> </label>
+            <button onclick="detectCrack()">Detect Crack</button>
+            <div id="image-preview">
+                <img id="preview-img" src="#" alt="Uploaded Image">
+            </div>
+        <div id="result"></div>
+        <script>
+            function detectCrack() {
+    const formData = new FormData();
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('preview-img');
+    const resultDiv = document.getElementById('result');
+
+    formData.append('image', imageInput.files[0]);
+
+    fetch('/', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        resultDiv.textContent = result;
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+document.getElementById('imageInput').addEventListener('change', function() {
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('preview-img');
+    const uploadForm = document.getElementById('upload-form');
+    const resultDiv = document.getElementById('result');
+
+    resultDiv.textContent = '';
+
+    const file = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function() {
+        imagePreview.src = reader.result;
+        imagePreview.style.display = 'block';
+        uploadForm.style.marginBottom = '40px';
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.src = '';
+        imagePreview.style.display = 'none';
+        uploadForm.style.marginBottom = '0';
+    }
+});
+
+        </script>
+    </div>
+
+</body>
+</html>
