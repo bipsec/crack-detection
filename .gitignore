@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+.idea/
+venv/
+virtualenv/
+env
+conda/
+surface_crack_detection
