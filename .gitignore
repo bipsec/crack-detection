@@ -5,3 +5,4 @@ virtualenv/
 env
 conda/
 surface_crack_detection
+.__pycache__/
