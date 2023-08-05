@@ -2,6 +2,10 @@
 
 
 ## Project Description
+Developing an image analysis software to detect cracks from pictures involves 
+several steps. Here is a basic image analysis project setup that can detect 
+cracks from image. It is only trained with a less amount of data available in Kaggle.
+
 
 ## File Structure
 ```sh
@@ -9,7 +13,7 @@ crack-detection/
 ├── templates/
 ├── |── index.html
 ├── app.py
-├──test_data/
+├── test_data/
 ├── |── img(1)
 ├── |── img(2)
 ├── uploads
@@ -40,6 +44,7 @@ cd crack-detection
 ```sh
 python app.py
 ```
+You can see the project is running on [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 # Conclusion
  
